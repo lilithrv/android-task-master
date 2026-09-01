@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">TaskMaster</string>
+
+    <!-- Login (am_) -->
+    <string name="am_titulo">TaskMaster</string>
+    <string name="am_logo">Logo de TaskMaster</string>
+    <string name="am_etusuario">Usuario</string>
+    <string name="am_etpassword">Contraseña</string>
+    <string name="am_btnlogin">Iniciar sesión</string>
+    <string name="am_btnregistro">Registrarse</string>
 </resources>
