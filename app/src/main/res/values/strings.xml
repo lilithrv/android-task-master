@@ -21,4 +21,10 @@
     <string name="ar_etpassword">Mínimo 4 caracteres</string>
     <string name="ar_cbterminos">Acepto los términos y condiciones</string>
     <string name="ar_btnregistrar">Registrar</string>
+
+    <!-- Bienvenido (ab_) -->
+    <string name="ab_logo">Logo de TaskMaster</string>
+    <string name="ab_bienvenida">¡Bienvenido!</string>
+    <string name="ab_subtitulo">Organiza tus tareas diarias</string>
+    <string name="ab_btncontinuar">Continuar a mis tareas</string>
 </resources>
