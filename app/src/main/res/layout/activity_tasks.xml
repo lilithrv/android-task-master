@@ -7,4 +7,87 @@
     android:layout_height="match_parent"
     tools:context=".TasksActivity">
 
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvTitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/at_titulo"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <!-- Formulario para crear una tarea -->
+        <EditText
+            android:id="@+id/etTarea"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="@string/at_ettarea"
+            android:inputType="text"
+            android:minHeight="48dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/spCategoria"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:minHeight="48dp" />
+
+            <RatingBar
+                android:id="@+id/rbPrioridad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:numStars="5"
+                android:rating="3"
+                android:stepSize="1" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnAgregar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/at_btnagregar" />
+
+        <!-- Progreso de tareas completadas -->
+        <TextView
+            android:id="@+id/tvProgreso"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/at_progreso" />
+
+        <ProgressBar
+            android:id="@+id/pbProgreso"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="100" />
+
+        <!-- Lista de tareas -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvTareas"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

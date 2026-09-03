@@ -1,0 +1,10 @@
+<resources>
+    <!-- Categorías que se muestran en el Spinner de la vista de Tareas -->
+    <string-array name="at_categorias">
+        <item>Trabajo</item>
+        <item>Personal</item>
+        <item>Estudio</item>
+        <item>Hogar</item>
+        <item>Otro</item>
+    </string-array>
+</resources>

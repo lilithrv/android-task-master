@@ -27,4 +27,12 @@
     <string name="ab_bienvenida">¡Bienvenido!</string>
     <string name="ab_subtitulo">Organiza tus tareas diarias</string>
     <string name="ab_btncontinuar">Continuar a mis tareas</string>
+
+    <!-- Tareas (at_) -->
+    <string name="at_titulo">Mis tareas</string>
+    <string name="at_ettarea">Nueva tarea</string>
+    <string name="at_btnagregar">Agregar tarea</string>
+    <string name="at_progreso">Completadas: 0/0 (0%)</string>
+    <string name="at_iconodesc">Icono de tarea</string>
+
 </resources>
