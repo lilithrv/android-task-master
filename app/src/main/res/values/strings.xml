@@ -8,4 +8,17 @@
     <string name="am_etpassword">Contraseña</string>
     <string name="am_btnlogin">Iniciar sesión</string>
     <string name="am_btnregistro">Registrarse</string>
+
+    <!-- Registro (ar_) -->
+    <string name="ar_titulo">Crear cuenta</string>
+    <string name="ar_tvusuario">Usuario:</string>
+    <string name="ar_tvnombre">Nombre:</string>
+    <string name="ar_tvemail">Email:</string>
+    <string name="ar_lblpassword">Contraseña:</string>
+    <string name="ar_etusuario">Ej: jperez</string>
+    <string name="ar_etnombre">Ej: Juan Pérez</string>
+    <string name="ar_etemail">Ej: juan@correo.cl</string>
+    <string name="ar_etpassword">Mínimo 4 caracteres</string>
+    <string name="ar_cbterminos">Acepto los términos y condiciones</string>
+    <string name="ar_btnregistrar">Registrar</string>
 </resources>

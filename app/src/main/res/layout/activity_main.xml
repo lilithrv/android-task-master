@@ -43,11 +43,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autofillHints="username"
-            android:hint="@string/am_etusuario"
-            android:textColor="@color/login_text"
-            android:textColorHint="@color/login_hint"
             android:backgroundTint="@color/login_hint"
-            android:inputType="text" />
+            android:hint="@string/am_etusuario"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:textColor="@color/login_text"
+            android:textColorHint="@color/login_hint" />
 
         <EditText
             android:id="@+id/etPassword"
@@ -55,11 +56,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:autofillHints="password"
+            android:backgroundTint="@color/login_hint"
             android:hint="@string/am_etpassword"
+            android:inputType="textPassword"
             android:textColor="@color/login_text"
             android:textColorHint="@color/login_hint"
-            android:backgroundTint="@color/login_hint"
-            android:inputType="textPassword" />
+            tools:ignore="TouchTargetSizeCheck" />
 
         <Button
             android:id="@+id/btnLogin"
