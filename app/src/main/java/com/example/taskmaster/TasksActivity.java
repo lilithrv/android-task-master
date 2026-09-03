@@ -54,8 +54,8 @@ public class TasksActivity extends AppCompatActivity {
 
         // Llenar el Spinner con las categorías
         ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(
-                this, R.array.at_categorias, android.R.layout.simple_spinner_item);
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                this, R.array.at_categorias, R.layout.item_spinner);
+        spinnerAdapter.setDropDownViewResource(R.layout.item_spinner);
         spCategoria.setAdapter(spinnerAdapter);
 
         // Si es el usuario demo, precargar tareas de ejemplo
