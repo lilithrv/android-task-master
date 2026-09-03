@@ -53,6 +53,14 @@ public class RegisterActivity extends AppCompatActivity {
                 etEmail.setError("Ingrese el email");
                 return;
             }
+
+            // Validar formato (que tenga @, dominio y extensión válida)
+            if (Validaciones.esEmailInvalido(etEmail)) {
+                etEmail.setError("Ingrese un correo electrónico válido");
+                etEmail.requestFocus();
+                return;
+            }
+
             if (Validaciones.esVacio(etPassword)) {
                 etPassword.setError("Ingrese la contraseña");
                 return;

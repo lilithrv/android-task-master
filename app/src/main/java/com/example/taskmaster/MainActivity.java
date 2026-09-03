@@ -16,7 +16,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class MainActivity extends AppCompatActivity {
 
     EditText etUsuario, etPassword;
-    Button btnLogin;
+    Button btnLogin,  btnIrRegistro;
 
 
     @Override
@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
         // Referencias a las vistas
         etUsuario = findViewById(R.id.etUsuario);
         etPassword = findViewById(R.id.etPassword);
+        btnLogin = findViewById(R.id.btnLogin);
+        btnIrRegistro = findViewById(R.id.btnIrRegistro);
 
         btnLogin.setOnClickListener(v -> {
             String usuario = etUsuario.getText().toString().trim();
@@ -60,6 +62,12 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(this, "Credenciales incorrectas", Toast.LENGTH_SHORT).show();
             }
+        });
+
+        // Botón ir a Registro
+        btnIrRegistro.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+            startActivity(intent);
         });
     }
 }
