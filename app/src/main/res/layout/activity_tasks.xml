@@ -68,9 +68,9 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_hight="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="@string/at_prioridad"/>
+                android:text="@string/at_prioridad" />
 
             <RatingBar
                 android:id="@+id/rbPrioridad"
