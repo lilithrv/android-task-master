@@ -33,6 +33,7 @@ public class TasksActivity extends AppCompatActivity {
     RadioGroup rgFiltro;
     RecyclerView rvTareas;
 
+    // Lista maestra con todas las tareas y lista visible
     ArrayList<Tarea> todas = new ArrayList<>();
     ArrayList<Tarea> visibles = new ArrayList<>();
     TareaAdapter adapter;
@@ -53,6 +54,7 @@ public class TasksActivity extends AppCompatActivity {
         spCategoria = findViewById(R.id.spCategoria);
         rbPrioridad = findViewById(R.id.rbPrioridad);
         btnAgregar = findViewById(R.id.btnAgregar);
+        btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
         pbProgreso = findViewById(R.id.pbProgreso);
         tvProgreso = findViewById(R.id.tvProgreso);
         rgFiltro = findViewById(R.id.rgFiltro);
@@ -72,18 +74,16 @@ public class TasksActivity extends AppCompatActivity {
             todas.add(new Tarea("Pedir hora control médico", "Personal", 3));
         }
 
-        // Configurar el RecyclerView
+        // Configurar el RecyclerView (el adapter muestra la lista visible/filtrada)
         adapter = new TareaAdapter(visibles, this::onTareaCambiada);
         rvTareas.setLayoutManager(new LinearLayoutManager(this));
         rvTareas.setAdapter(adapter);
 
         aplicarFiltro();
-
         actualizarProgreso();
 
-        // si cambia el filtro, se vuelve a armar la lista
-
-        rgFiltro.setOnCheckedChangeListener((group, checkedIn) -> aplicarFiltro());
+        // Cambiar el filtro vuelve a armar la lista visible
+        rgFiltro.setOnCheckedChangeListener((group, checkedId) -> aplicarFiltro());
 
         // Botón agregar nueva tarea
         btnAgregar.setOnClickListener(v -> {
@@ -104,42 +104,42 @@ public class TasksActivity extends AppCompatActivity {
             actualizarProgreso();
         });
 
-        // cerrar sesión
+        // Logout
         btnCerrarSesion.setOnClickListener(v -> {
             Intent intent = new Intent(TasksActivity.this, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | intent.FLAG_ACTIVITY_CLEAR_TASK);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();
         });
     }
 
-    // cuando usuario marca/desmarca una tarea de la lista
-    private void onTareaCambiada(){
+    // usuario marca/desmarca una tarea en la lista
+    private void onTareaCambiada() {
         actualizarProgreso();
         aplicarFiltro();
     }
 
-    // reconstruir lista visible según filtro seleccionado
-    private  void aplicarFiltro(){
-        int checkedIn = rgFiltro.getCheckedRadioButtonId();
+    // Reconstruye la lista visible según el filtro seleccionado
+    private void aplicarFiltro() {
+        int checkedId = rgFiltro.getCheckedRadioButtonId();
         visibles.clear();
-        for (Tarea t : todas){
+        for (Tarea t : todas) {
             boolean mostrar;
-            if(checkedIn == R.id.rbPendientes){
+            if (checkedId == R.id.rbPendientes) {
                 mostrar = !t.isHecha();
-            } else if (checkedIn == R.id.rbCompletadas) {
+            } else if (checkedId == R.id.rbCompletadas) {
                 mostrar = t.isHecha();
             } else {
-                mostrar = true;
+                mostrar = true; // rbTodas
             }
-            if (mostrar){
+            if (mostrar) {
                 visibles.add(t);
             }
         }
         adapter.notifyDataSetChanged();
     }
 
-    // Actualiza la barra de progreso con el porcentaje de tareas completadas.
+    // Actualiza la barra de progreso con el porcentaje de tareas completadas
     private void actualizarProgreso() {
         int total = todas.size();
         int completadas = 0;

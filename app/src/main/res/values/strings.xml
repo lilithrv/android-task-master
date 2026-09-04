@@ -37,6 +37,6 @@
     <string name="at_filtro_todas">Todas</string>
     <string name="at_filtro_pendientes">Pendientes</string>
     <string name="at_filtro_completadas">Completadas</string>
-
+    <string name="at_prioridad">Prioridad</string>
 
 </resources>
