@@ -33,6 +33,10 @@
     <string name="at_ettarea">Nueva tarea</string>
     <string name="at_btnagregar">Agregar tarea</string>
     <string name="at_progreso">Completadas: 0/0 (0%)</string>
-    <string name="at_iconodesc">Icono de tarea</string>
+    <string name="at_iconodesc">Icono de tarea</string><string name="at_btncerrarsesion">Cerrar sesión</string>
+    <string name="at_filtro_todas">Todas</string>
+    <string name="at_filtro_pendientes">Pendientes</string>
+    <string name="at_filtro_completadas">Completadas</string>
+
 
 </resources>

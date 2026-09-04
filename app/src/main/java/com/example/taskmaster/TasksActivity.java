@@ -1,10 +1,12 @@
 package com.example.taskmaster;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RadioGroup;
 import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -25,11 +27,14 @@ public class TasksActivity extends AppCompatActivity {
     Spinner spCategoria;
     RatingBar rbPrioridad;
     Button btnAgregar;
+    Button btnCerrarSesion;
     ProgressBar pbProgreso;
     TextView tvProgreso;
+    RadioGroup rgFiltro;
     RecyclerView rvTareas;
 
-    ArrayList<Tarea> tareas = new ArrayList<>();
+    ArrayList<Tarea> todas = new ArrayList<>();
+    ArrayList<Tarea> visibles = new ArrayList<>();
     TareaAdapter adapter;
 
     @Override
@@ -50,6 +55,7 @@ public class TasksActivity extends AppCompatActivity {
         btnAgregar = findViewById(R.id.btnAgregar);
         pbProgreso = findViewById(R.id.pbProgreso);
         tvProgreso = findViewById(R.id.tvProgreso);
+        rgFiltro = findViewById(R.id.rgFiltro);
         rvTareas = findViewById(R.id.rvTareas);
 
         // Llenar el Spinner con las categorías
@@ -61,17 +67,23 @@ public class TasksActivity extends AppCompatActivity {
         // Si es el usuario demo, precargar tareas de ejemplo
         boolean esDemo = getIntent().getBooleanExtra("ES_DEMO", false);
         if (esDemo) {
-            tareas.add(new Tarea("Reunión", "Trabajo", 4));
-            tareas.add(new Tarea("Estudiar Android", "Estudio", 5));
-            tareas.add(new Tarea("Pedir hora control médico", "Personal", 3));
+            todas.add(new Tarea("Reunión", "Trabajo", 4));
+            todas.add(new Tarea("Estudiar Android", "Estudio", 5));
+            todas.add(new Tarea("Pedir hora control médico", "Personal", 3));
         }
 
         // Configurar el RecyclerView
-        adapter = new TareaAdapter(tareas, this::actualizarProgreso);
+        adapter = new TareaAdapter(visibles, this::onTareaCambiada);
         rvTareas.setLayoutManager(new LinearLayoutManager(this));
         rvTareas.setAdapter(adapter);
 
+        aplicarFiltro();
+
         actualizarProgreso();
+
+        // si cambia el filtro, se vuelve a armar la lista
+
+        rgFiltro.setOnCheckedChangeListener((group, checkedIn) -> aplicarFiltro());
 
         // Botón agregar nueva tarea
         btnAgregar.setOnClickListener(v -> {
@@ -83,21 +95,55 @@ public class TasksActivity extends AppCompatActivity {
             String categoria = spCategoria.getSelectedItem().toString();
             float prioridad = rbPrioridad.getRating();
 
-            tareas.add(new Tarea(titulo, categoria, prioridad));
-            adapter.notifyItemInserted(tareas.size() - 1);
+            todas.add(new Tarea(titulo, categoria, prioridad));
+            aplicarFiltro();
 
             // Limpiar el formulario
             etTarea.setText("");
             rbPrioridad.setRating(0);
             actualizarProgreso();
         });
+
+        // cerrar sesión
+        btnCerrarSesion.setOnClickListener(v -> {
+            Intent intent = new Intent(TasksActivity.this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
+        });
+    }
+
+    // cuando usuario marca/desmarca una tarea de la lista
+    private void onTareaCambiada(){
+        actualizarProgreso();
+        aplicarFiltro();
+    }
+
+    // reconstruir lista visible según filtro seleccionado
+    private  void aplicarFiltro(){
+        int checkedIn = rgFiltro.getCheckedRadioButtonId();
+        visibles.clear();
+        for (Tarea t : todas){
+            boolean mostrar;
+            if(checkedIn == R.id.rbPendientes){
+                mostrar = !t.isHecha();
+            } else if (checkedIn == R.id.rbCompletadas) {
+                mostrar = t.isHecha();
+            } else {
+                mostrar = true;
+            }
+            if (mostrar){
+                visibles.add(t);
+            }
+        }
+        adapter.notifyDataSetChanged();
     }
 
     // Actualiza la barra de progreso con el porcentaje de tareas completadas.
     private void actualizarProgreso() {
-        int total = tareas.size();
+        int total = todas.size();
         int completadas = 0;
-        for (Tarea t : tareas) {
+        for (Tarea t : todas) {
             if (t.isHecha()) {
                 completadas++;
             }
