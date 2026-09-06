@@ -15,9 +15,9 @@
     <string name="ar_tvnombre">Nombre:</string>
     <string name="ar_tvemail">Email:</string>
     <string name="ar_lblpassword">Contraseña:</string>
-    <string name="ar_etusuario">Ej: jperez</string>
-    <string name="ar_etnombre">Ej: Juan Pérez</string>
-    <string name="ar_etemail">Ej: juan@correo.cl</string>
+    <string name="ar_etusuario">Ej: atorres</string>
+    <string name="ar_etnombre">Ej: Ana Torres</string>
+    <string name="ar_etemail">Ej: ana@correo.cl</string>
     <string name="ar_etpassword">Mínimo 4 caracteres</string>
     <string name="ar_cbterminos">Acepto los términos y condiciones</string>
     <string name="ar_btnregistrar">Registrar</string>
